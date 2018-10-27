@@ -17,6 +17,7 @@ use App\Models\Users;
 use DB;
 use Response;
 use Session;
+use Carbon\Carbon;
 
 class PagesController extends ApplicationController {
 
@@ -613,7 +614,22 @@ class PagesController extends ApplicationController {
 
 
 	//RCAV1-168 - START
-	public function sorrypage(){
+	public function sorrypage( Request $request ){
+
+		$getrequest 	= $request->all();
+		$travelToCode 	= isset($getrequest['country_code']) && !empty($getrequest['country_code']) ? $getrequest['country_code'] : null;
+		$travelToName 	= isset($getrequest['travel_to']) && !empty($getrequest['travel_to']) ? $getrequest['travel_to'] : null;
+		$citizenTo 		= isset($getrequest['citizen_to']) && !empty($getrequest['citizen_to']) ? $getrequest['citizen_to'] : null;
+		$citizenToName	= isset($getrequest['citizen_to_text']) && !empty($getrequest['citizen_to_text']) ? $getrequest['citizen_to_text'] : null;
+
+		$residingInCode = isset($getrequest['residing_in']) && !empty($getrequest['residing_in']) ? $getrequest['residing_in'] : null;
+		$residingInName = null;
+
+		$tblSearchServicesCountryId = DB::table('tbl_search_services_country')
+    		->insertGetId(
+            	['travel_to' => $travelToCode, 'travel_to_name' => $travelToName, 'citizen_to'=> $citizenTo, 'citizen_to_name'=>$citizenToName, 'residing_in'=> $residingInCode, 'residing_in_name' => $residingInName, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()  ]
+    		);
+
     	return view('pages/sorry');
 	}
 	//RCAV1-168 - END
@@ -717,4 +733,26 @@ class PagesController extends ApplicationController {
 
 		return json_encode($error);exit;
 	}
+
+	//RCAV1-168 - START
+	public function extractservicecountry( Request $request ){
+		
+		header('Content-Type: text/csv');
+		header('Content-Disposition: attachment; filename="search_services_country.csv"');
+
+		$data 	= DB::table('tbl_search_services_country')->select(DB::raw("travel_to_name,citizen_to_name,residing_in,created_at"))->get();
+		$fp 	= fopen('php://output', 'wb');
+
+		fputcsv($fp, array("Travel To","Citizen To","Residing In","Created Date")); //Adding Header.
+		
+		foreach ( $data as $row ) {		
+			fputcsv($fp, array($row->travel_to_name,$row->citizen_to_name,$row->residing_in,$row->created_at));
+		}
+
+		fclose($fp);
+	}
+	//RCAV1-168 - END
+
+	
 }
+
