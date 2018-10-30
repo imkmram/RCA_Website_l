@@ -874,7 +874,7 @@ $(function () {
                 }
             });
             $.ajax({
-                url: "/rca_website_l/public/ajaxcheckotp",
+                url: "/projects/rca_website_l/public/ajaxcheckotp",
                 type: "POST",
                 dataType: "json",
                 data: {

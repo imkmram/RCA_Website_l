@@ -207,7 +207,7 @@
                         <!--div class="__round_wrapper __frm_gutter">
                           <input type="checkbox" name="terms" id="terms" value="Y" checked="" required="">  I agree to the <a href='{{URL::to("/")}}/terms-and-conditions' target='_blank'>Terms & Conditions</a> and <a href='{{URL::to("/")}}/privacy-policy' target='_blank'>Privacy Policy</a>
  </div-->
-                        <form name="" method="post" action="userForm" enctype="multipart/form-data">
+                        <form name="" method="post" id="frmmeetassist" action="userForm" enctype="multipart/form-data">
 			<div class="__round_wrapper __frm_gutter">
                           <input type="checkbox" name="terms" id="terms" value="Y" checked="" required="">  I agree to the <a href='{{URL::to("/")}}/terms-and-conditions' target='_blank'>Terms & Conditions</a> and <a href='{{URL::to("/")}}/privacy-policy' target='_blank'>Privacy Policy</a>
  </div>
@@ -283,7 +283,7 @@
                                             <span class="btn btn-default btn-file">
                                                 <span class="fileinput-new"><i class="fa fa-upload"></i></span>
                                                 <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="ticket_<?php echo $x; ?>"> <!-- RCAV1-56 -->
+                                                <input type="file" required="" class="ticketfile" name="ticket_<?php echo $x; ?>"> <!-- RCAV1-56 -->
                                             </span>
                                             <span class="fileinput-filename"></span>
                                             <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
