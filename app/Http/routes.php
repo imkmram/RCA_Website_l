@@ -138,6 +138,8 @@ Route::match(['get', 'post'], 'vietnam', 'PagesController@lpvietnam');
 Route::match(['get', 'post'], 'oman', 'PagesController@lpoman');
 Route::match(['get', 'post'], 'uae', 'PagesController@lpuae');
 Route::match(['get', 'post'], 'singapore', 'PagesController@lpsingapore');
+Route::match(['get', 'post'], 'thailand', 'PagesController@lpthailand');
+Route::match(['get', 'post'], 'canada', 'PagesController@lpcanada');
 
 Route::get('Meetnassist/ccavenue', 'MeetnassistController@requestCCAvenue');
 Route::post('Meetnassist/res', 'MeetnassistController@responseCCAvenue');
