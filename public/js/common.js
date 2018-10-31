@@ -2907,7 +2907,7 @@ $(function () {
                         .attr("value", key)
                         .text(value));
             });
-            $('#evisaForm').attr('action','search-country/'+country_code);
+            $('#evisaForm').attr('action','sorry');
             $('#citizen_to').removeAttr('disabled');
             $('#lp_link').css('display', 'none');
             $('#btn_step1').css('display', 'inline-block');
@@ -2939,6 +2939,10 @@ $(function () {
 
         var not_eligible_error                  = 'Travelling To and Residing In destinations should not be the same.';
         var sorry_message                       = 'Sorry! <br> We currently do not service for the combination that you have selected. <br> However, we are adding multiple countries and combinations to our website. Stay tuned for more information.';
+
+        console.log("travel_to : " + travel_to);
+        console.log("citizen_to : " + citizen_to);
+        console.log("residing_in : " + residing_in);
 
 
 
@@ -3039,6 +3043,9 @@ $(function () {
         else if( travel_to == "Singapore" && citizen_to == "IND" &&  residing_in == "IND" ){
             return;
         }else if( travel_to == "Singapore" && citizen_to == "IND" &&  singapore_allowed_countries_arr.indexOf(residing_in) === -1 ){
+            $('#evisaForm').attr('action','sorry');
+            return;
+        }else{
             $('#evisaForm').attr('action','sorry');
             return;
         }

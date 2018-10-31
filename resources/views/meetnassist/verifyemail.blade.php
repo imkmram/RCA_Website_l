@@ -141,6 +141,31 @@
     </div>
     <div class="loading" id="overlay_load" style="display: none;">Loading&#8230;</div>
  <script type="text/javascript">
+
+    window.addEventListener('beforeunload', function (e) {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/projects/rca_website_l/public/sendabandonsmail",
+            type: "POST",
+            dataType:"json",
+            async: true,
+            data: {order_id:123,pagename:'page_name'},
+            success: function (response) {
+                // console.log(response);
+                            //alert("grate");                 
+            }
+        });
+
+        e.preventDefault();
+        e.returnValue = '';
+    });
+
+
     function submitdata(){
         var inputIsValid = $('#frmeditotp').valid(); // returns true/false
         $('#overlay_load').show();

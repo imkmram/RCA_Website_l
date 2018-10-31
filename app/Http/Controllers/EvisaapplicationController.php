@@ -2490,7 +2490,6 @@ public function ajaxcheckotp(Request $request){
 	$getpostdata = $request->all();
 	$error = array();
 	$data_arr = array();
-	print_r($getpostdata); exit;
 	
 	if(!empty($getpostdata['uid'])){
 		try{
