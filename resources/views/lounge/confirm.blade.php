@@ -183,7 +183,7 @@
                         <!--div class="__round_wrapper __frm_gutter">
                                         <input type="checkbox" name="terms" id="terms" value="Y" required="">  I agree to the <a href='{{URL::to("/")}}/terms-and-conditions' target='_blank'>Terms & Conditions</a> and <a href='{{URL::to("/")}}/privacy-policy' target='_blank'>Privacy Policy</a>
                         </div-->
-                        <form name="" method="post" action="userForm" enctype="multipart/form-data">
+                        <form name=""  id="frmlounge" method="post" action="userForm" enctype="multipart/form-data">
                            <div class="__round_wrapper __frm_gutter">
                                         <input type="checkbox" name="terms" id="terms" value="Y" required="">  I agree to the <a href='{{URL::to("/")}}/terms-and-conditions' target='_blank'>Terms & Conditions</a> and <a href='{{URL::to("/")}}/privacy-policy' target='_blank'>Privacy Policy</a>
                         </div>
@@ -200,19 +200,19 @@
                             <input type="hidden" name="departure_airport_code2" id="departure_airport_code2" value="{{isset($departure_airport_code2)?$departure_airport_code2:''}}">
                             <input type="hidden" name="arrival_airport_code2" id="arrival_airport_code2" value="{{isset($arrival_airport_code2) ? $arrival_airport_code2 : ''}}">
                             <input type="hidden" name="change_flight" id="change_flight" value="{{$change_flight}}">
-                                    <input type="hidden" name="product_id" id="product_id" value="2">
-                                    <input type="hidden" name="product_type" id="product_type" value="{{$product_type}}">
-                                    <input type="hidden" name="price_id" id="price_id" value="{{$price_id}}">
-                                    <input type="hidden" name="passenger" id="passenger" value="{{$no_of_passengers}}">
-                                    <input type="hidden" name="arrival_terminal" id="arrival_terminal" value="{{$arrival_terminal}}">
-                                    <input type="hidden" name="departure_terminal" id="departure_terminal" value="{{$departure_terminal}}">
-                                    <input type="hidden" name="departure_terminal2" id="departure_terminal2" value="{{isset($departure_terminal2) ? $departure_terminal2 : ''}}">
-                                    <input type="hidden" name="arrival_terminal2" id="arrival_terminal2" value="{{isset($arrival_terminal2) ? $arrival_terminal2 : ''}}">
+                            <input type="hidden" name="product_id" id="product_id" value="2">
+                            <input type="hidden" name="product_type" id="product_type" value="{{$product_type}}">
+                            <input type="hidden" name="price_id" id="price_id" value="{{$price_id}}">
+                            <input type="hidden" name="passenger" id="passenger" value="{{$no_of_passengers}}">
+                            <input type="hidden" name="arrival_terminal" id="arrival_terminal" value="{{$arrival_terminal}}">
+                            <input type="hidden" name="departure_terminal" id="departure_terminal" value="{{$departure_terminal}}">
+                            <input type="hidden" name="departure_terminal2" id="departure_terminal2" value="{{isset($departure_terminal2) ? $departure_terminal2 : ''}}">
+                            <input type="hidden" name="arrival_terminal2" id="arrival_terminal2" value="{{isset($arrival_terminal2) ? $arrival_terminal2 : ''}}">
 
-                                    <!-- RCAS-2 - START -->
-                                    <input type="hidden" name="search_by_city" id="search_by_city" value="{{isset($search_by_city) ? $search_by_city : 'no'}}">
-                                    <input type="hidden" name="city_one" id="city_one" value="{{isset($city_one) ? $city_one : ''}}">
-                                    <!-- RCAS-2 - END -->
+                            <!-- RCAS-2 - START -->
+                            <input type="hidden" name="search_by_city" id="search_by_city" value="{{isset($search_by_city) ? $search_by_city : 'no'}}">
+                            <input type="hidden" name="city_one" id="city_one" value="{{isset($city_one) ? $city_one : ''}}">
+                            <!-- RCAS-2 - END -->
 
 
                         <?php for ($x = 1; $x <= $total_passengers; $x++) { ?>
@@ -258,7 +258,7 @@
                                             <span class="btn btn-default btn-file">
                                                 <span class="fileinput-new"><i class="fa fa-upload"></i></span>
                                                 <span class="fileinput-exists">Change</span>
-                                                <input type="file" required="" name="ticket_<?php echo $x; ?>"> <!-- RCAV1-56 -->
+                                                <input type="file" required="" class="ticketfile" name="ticket_<?php echo $x; ?>"> <!-- RCAV1-56 -->
                                             </span>
                                             <span class="fileinput-filename"></span>
                                             <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
