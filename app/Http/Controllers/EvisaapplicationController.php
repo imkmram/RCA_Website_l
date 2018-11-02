@@ -1909,86 +1909,37 @@ public function reviewindia(Request $request){
 }
 
 public function sendabandonsmail(Request $request){
-	$error = array();
-	$sendmail = new ApplicationController;
+	$error 		= array();
+	$sendmail 	= new ApplicationController;
 	$status_arr = array();
 	$getrequest = $request->all();
-	// echo "<pre>";print_r($getorderdetails);exit;
 	try{
-		// $getorderdetails = OrderDetails::join('users','users.user_id','=','order_details.user_id')->where('payment_status', '=', '')->orWhereNull('payment_status')->get();
 		$getorderdetails = OrderDetails::join('users','users.user_id','=','order_details.user_id')->where('order_id', '=', $getrequest['order_id'])->first();
-		// echo "<pre>";print_r($getorderdetails);exit;
-		// if($getrequest['pagename']=="evisa-type"){
-		// 	$error['status'] = "warning";
-		// 	$error['msg'] = "same page found";
-		// } else {
-		// 	if(count($getorderdetails) > 0){
-		// 	if($getorderdetails->abandon_sent == "N"){
-		// 			$to = $getorderdetails->email_id;
-		//             $cust_name = $getorderdetails->username;
-		                
-		//             $content = "Dear $cust_name, <br><p>Thank you for your interest in our services. We see that you were in the process of filling your visa application and have not completed it. To ensure that you have all the support that you need, our team will get in touch with you shortly to help you through your transaction</p><p>For any assistance, please do call us at +912262538600 or email us at <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>customercare@redcarpetassist.com</a> We work Monday to Saturday, 10 am to 8pm Indian Standard Time (GMT +5.30)</p><p>Your <font color='red'>RedCarpet</font> Assist Team.</p><p><i>Add <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>support@redcarpetassist.com</a> to your address book to ensure that our mails reach your Inbox.</i></p>";
-
-		//                 $subject ="Your transaction is incomplete";
-		//                 $sendmail->sendEmail("support@redcarpetassist.com",$to,null,null, $subject, $content);
-
-		//             // UserLeads::where('status', "Evisa-verifyemail")
-		//             // ->update(['status'=>'abandons_booking']);
-
-		//             // DB::table('user_leads')->whereIn('status',['Evisa-ApplicationDetails','Evisa-verifyemail'])->update(['status'=>'abandons_booking']);    
-
-		// 		    OrderDetails::where('order_id', $getrequest['order_id'])->update(['abandon_sent'=>'Y']);
-
-		// 		    // DB::table('order_details')->whereIn('applicant_booking_status',['Evisa-ApplicationDetails','Evisa-verifyemail'])->update(['applicant_booking_status'=>'abandons_booking']);         
-
-		// 		    $error['status'] = "success";
-		// 		    $error['msg'] = "Send Mail Successfully";
-		// 		} else {
-		// 			$error['status'] = "warning";
-		// 		    $error['msg'] = "Already Send Mail";
-		// 		}
-		// 	} else {
-		// 		$error['status'] = "Not Found";
-		// 		$error['msg'] = "Record Not Found";
-		// 	}
-		// }
+		
 		if(count($getorderdetails) > 0){
-			if($getorderdetails->abandon_sent == "Y"){
-					$to = $getorderdetails->email_id;
-		            $cust_name = $getorderdetails->username;
-		                
-		            $content = "Dear $cust_name, <br><p>Thank you for your interest in our services. We see that you were in the process of filling your visa application and have not completed it. To ensure that you have all the support that you need, our team will get in touch with you shortly to help you through your transaction</p><p>For any assistance, please do call us at +912262538600 or email us at <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>customercare@redcarpetassist.com</a> We work Monday to Saturday, 10 am to 8pm Indian Standard Time (GMT +5.30)</p><p>Your <font color='red'>RedCarpet</font> Assist Team.</p><p><i>Add <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>support@redcarpetassist.com</a> to your address book to ensure that our mails reach your Inbox.</i></p>";
+			$to 		= $getorderdetails->email_id;
+			$cust_name 	= $getorderdetails->username;
+			$content 	= "Dear $cust_name, <br><p>Thank you for your interest in our services. We see that you were in the process of filling your visa application and have not completed it. To ensure that you have all the support that you need, our team will get in touch with you shortly to help you through your transaction</p><p>For any assistance, please do call us at +912262538600 or email us at <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>customercare@redcarpetassist.com</a> We work Monday to Saturday, 10 am to 8pm Indian Standard Time (GMT +5.30)</p><p>Your <font color='red'>RedCarpet</font> Assist Team.</p><p><i>Add <a href='mailto:customercare@redcarpetassist.com?Subject=Your transaction is incomplete' target='_top'>support@redcarpetassist.com</a> to your address book to ensure that our mails reach your Inbox.</i></p>";
 
-		                $subject ="Your transaction is incomplete";
-		                $sendmail->sendEmail("support@redcarpetassist.com",$to,null,null, $subject, $content);
+			$subject 	= "Your transaction is incomplete";
+			$sendmail->sendEmail("support@redcarpetassist.com",$to,null,null, $subject, $content);   
 
-		            // UserLeads::where('status', "Evisa-verifyemail")
-		            // ->update(['status'=>'abandons_booking']);
+			OrderDetails::where('order_id', $getrequest['order_id'])->update(['abandon_sent'=>'Y']);
 
-		            // DB::table('user_leads')->whereIn('status',['Evisa-ApplicationDetails','Evisa-verifyemail'])->update(['status'=>'abandons_booking']);    
-
-				    OrderDetails::where('order_id', $getrequest['order_id'])->update(['abandon_sent'=>'Y']);
-
-				    // DB::table('order_details')->whereIn('applicant_booking_status',['Evisa-ApplicationDetails','Evisa-verifyemail'])->update(['applicant_booking_status'=>'abandons_booking']);         
-
-				    $error['status'] = "success";
-				    $error['msg'] = "Send Mail Successfully";
-				} else {
-					$error['status'] = "warning";
-				    $error['msg'] = "Already Send Mail";
-				}
-			} else {
-				$error['status'] = "Not Found";
-				$error['msg'] = "Record Not Found";
-			}
-	} catch(\Illuminate\Database\QueryException $ex){
-			dd($ex->getMessage());
-			$error['status'] = "Failed";
-			$error['msg'] = "Something Wrong";
-	} catch(PDOException $ex){
-			dd($ex->getMessage());
-			$error['status'] = "Failed";
-			$error['msg'] = "Something Wrong";
+			$error['status'] 	= "success";
+			$error['msg'] 		= "Send Mail Successfully";
+		}else{
+			$error['status'] 	= "Not Found";
+			$error['msg'] 		= "Record Not Found";
+		}
+	}catch(\Illuminate\Database\QueryException $ex){
+		dd($ex->getMessage());
+		$error['status'] 	= "Failed";
+		$error['msg'] 		= "Something Wrong";
+	}catch(PDOException $ex){
+		dd($ex->getMessage());
+		$error['status'] 	= "Failed";
+		$error['msg'] 		= "Something Wrong";
 	}
 
 	file_put_contents(public_path().'/sendmail_log/log_abandonmail_'.date("j.n.Y").'.log', json_encode($error));

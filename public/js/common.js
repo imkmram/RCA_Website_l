@@ -2979,6 +2979,8 @@ $(function () {
             $("#errorMessageForEvisaSearch").html(not_eligible_error);
             $('#errorModalForEvisaSearchEngine').modal('show');
             e.preventDefault();
+        }else if( travel_to == "Oman" && citizen_to == "IND" &&  residing_in == "IND" ){
+            return;
         }else if( travel_to == "Oman" && citizen_to == "IND" &&  oman_allowed_countries_arr.indexOf(residing_in) === -1 ){
             return;
         }else if( travel_to == "Turkey" && citizen_to == "IND" &&  residing_in == "TUR" ){

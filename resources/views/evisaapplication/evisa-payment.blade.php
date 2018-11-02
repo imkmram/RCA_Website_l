@@ -91,11 +91,98 @@
                             </div><!-- Form wrapper -->
                         </div><!-- Tab Content End -->
                         </form>
-                        <script src="{{URL::to('/')}}/js/windowunload.js" data-ordid="{{$getpostdata['order_id']}}" page-name="evisa-payment" userleaving="true"></script>
+                        <!-- <script src="{{URL::to('/')}}/js/windowunload.js" data-ordid="{{$getpostdata['order_id']}}" page-name="evisa-payment" userleaving="true"></script> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>   
+<script type="text/javascript">
+    //RCAV1-35 - START
+    $(document).ready(function () {
+        var closing_window = false;
+       
+        $(window).on('focus', function () {
+            closing_window = false; 
+        });
+
+        $(window).on('blur', function () {
+            closing_window = true;
+            if (!document.hidden) { //when the window is being minimized
+                closing_window = false;
+            }
+            $(window).on('resize', function (e) { //when the window is being maximized
+                closing_window = false;
+            });
+
+            $(window).off('resize'); //avoid multiple listening
+        });
+
+        $('html').on('mouseleave', function () {
+            closing_window = true; 
+            //if the user is leaving html, we have more reasons to believe that he's 
+            //leaving or thinking about closing the window
+        });
+
+        $('html').on('mouseenter', function () {
+            closing_window = false;
+        });
+
+        $(document).on('keydown', function (e) {
+            if (e.keyCode == 91 || e.keyCode == 18) {
+                closing_window = false; //shortcuts for ALT+TAB and Window key
+            }
+
+            if (e.keyCode == 116 || (e.ctrlKey && e.keyCode == 82)) {
+                closing_window = false; //shortcuts for F5 and CTRL+F5 and CTRL+R
+            }
+        });
+
+        // Prevent logout when clicking in a hiperlink
+        $(document).on("click", "a", function () {
+            closing_window = false;
+        });
+
+        // Prevent logout when clicking in a button (if these buttons rediret to some page)
+        $(document).on("click", "button", function () {
+            closing_window = false;
+        });
+
+        // Prevent logout when submiting
+        $(document).on("submit", "form", function () {
+            closing_window = false;
+        });
+
+        // Prevent logout when submiting
+        $(document).on("click", "input[type=submit]", function () {
+            closing_window = false;
+        });
+
+        window.addEventListener('beforeunload', function (e) {
+            if(closing_window === true){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "/projects/rca_website_l/public/sendabandonsmail",
+                    type: "POST",
+                    dataType:"json",
+                    async: true,
+                    data: {order_id:$('#order_id').val(),pagename:'evisa_verify_otp'},
+                    success: function (response) {
+                        // console.log(response);
+                                    //alert("grate");                 
+                    }
+                });
+            }
+        });
+    });
+    //RCAV1-35 - END
+ </script>
+
+
 @include('layouts.middle_footer')     
 @stop
