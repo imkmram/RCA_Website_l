@@ -18,6 +18,7 @@ $(document).ready(function () {
             passport_number: {
                 required: true,
                 minlength: 8,
+                alphanumeric :true
             },
             email_id: {
                 required: true
@@ -209,7 +210,7 @@ $(document).ready(function () {
                 }
             },
             applicant_zipcode_business: {
-                numeric: function(element) {
+                alphanumeric: function(element) {
                     return $('input[name="travel_type"]').val()=="business";
                 }
             },
@@ -332,7 +333,10 @@ $(document).ready(function () {
             
             hk_travel_fund_text: "Please select the available funds range for the trip",
            
-            passport_number: 'Please enter your valid passport number',
+            passport_number: {
+                required: "Please enter your passport number",
+                alphanumeric: "Please enter alphabet or numeric value"
+            },
             gender_text: 'Please select your gender',
             address: 'Enter Your Correct Address',
             travel_type_text: "Please select the travel type", 
@@ -373,7 +377,7 @@ $(document).ready(function () {
             },
             city_tourist: {
                 required: 'Please enter your city of residence',
-                alpha: "Please enter only alpha"
+                alpha: "Please enter only alphabets"
             },
             state_tourist: {
                 required: 'Please enter your state of residence',
@@ -397,7 +401,7 @@ $(document).ready(function () {
                 alpha: "Please enter only alphabets"
             },
             applicant_zipcode_business: {
-                numeric: "Please enter only number"
+                alphanumeric: "Please enter only alphabets or number"
             },
             applicant_telephone_number_business: "Please Enter Your Phone Number", 
             applicant_email_id_business: "Please input a valid email address", 
@@ -488,6 +492,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_valid_resident_visa_to_srilanka_tourist": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -499,6 +506,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_currently_in_srilanka_with_valid_eta_tourist": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -511,6 +521,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"have_multiple_entry_visa_to_srilanka_tourist": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -523,6 +536,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_valid_resident_visa_to_srilanka_business": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -534,6 +550,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"have_multiple_entry_visa_to_srilanka_business": null});
+        
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -545,6 +564,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_currently_in_srilanka_with_valid_eta_business": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -556,6 +578,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_valid_resident_visa_to_srilanka_transit": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -567,6 +592,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"have_multiple_entry_visa_to_srilanka_transit": null});
+        
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
@@ -578,6 +606,9 @@ $(document).ready(function () {
         var value = $(this).val();
         
         $('#srilanka_submit').removeAttr('disabled');
+        var validator = $( "#CustomTypeFormForSrilanka" ).validate();
+        validator.showErrors({"is_currently_in_srilanka_with_valid_eta_transit": null});
+
         if(value == "Y"){
             $('#srilanka_submit').attr('disabled','');
             var validator = $( "#CustomTypeFormForSrilanka" ).validate();
