@@ -611,7 +611,7 @@
                                     <div class="qs_body">Zip/Postal Code<div class="qs_sub">Contact Details of the Applicant's Company</div></div>
                                 </div>
                                 <div class="input-control">
-                                    <input type="text" class="only_number" name="applicant_zipcode_business" id="applicant_zipcode_business">
+                                    <input type="text" name="applicant_zipcode_business" id="applicant_zipcode_business">
                                     <div class="press_enter">PRESS ENTER</div>
                                 </div>
                             </div>
@@ -662,7 +662,7 @@
                                     <div class="qs_body">Fax Number<div class="qs_sub">Contact Details of the Applicant's Company</div></div>
                                 </div>
                                 <div class="input-control tele_plus">
-                                    <input type="text" name="applicant_fax_number_business" id="applicant_fax_number_business">
+                                    <input type="text" name="applicant_fax_number_business" id="applicant_fax_number_business" class="only_number">
                                     <div class="press_enter">PRESS ENTER</div>
                                 </div>
                             </div>
@@ -771,7 +771,7 @@
                                     <div class="qs_body">Fax Number<div class="qs_sub">Contact Details of the Sri Lankan Company</div></div>
                                 </div>
                                 <div class="input-control tele_plus">
-                                    <input type="text" name="srilankan_fax_number_business" id="srilankan_fax_number_business">
+                                    <input type="text" name="srilankan_fax_number_business" id="srilankan_fax_number_business" class="only_number">
                                     <div class="press_enter">PRESS ENTER</div>
                                 </div>
                             </div>
