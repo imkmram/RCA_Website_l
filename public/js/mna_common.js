@@ -434,25 +434,27 @@ $(function () {
     },
   });
 
-  //RCAV1-171 Start
+//RCAV1-171 Start
 
-  $('form#frmmeetassist').on('submit', function (event) {
-    //Add validation rule for dynamically generated name fields
-    $('.ticketfile').each(function () {
-      $(this).rules("add", {
-        required: true,
-        extension: "jpg,jpeg,png,pdf",
-        messages: {
-          required: "Please Upload File",
-          extension: "Upload Only JPG,JPEG,PNG,PDF File",
-        }
-      });
+$('form#frmmeetassist').on('submit', function(event) {
+        //Add validation rule for dynamically generated name fields
+    //Add validation rule for dynamically generated email fields
+    $('.ticketfile').each(function() {
+        $(this).rules("add", 
+            {
+                required: true,
+                extension: "jpg,jpeg,png,pdf",
+                messages: {
+                    required: "Please Upload File",
+                    extension: "Upload Only JPG,JPEG,PNG,PDF File",
+                }
+            });
     });
-  });
-  $("#frmmeetassist").validate({
-    errorElement: 'div',
-    errorClass: 'error-block',
-    errorPlacement: function (error, element) {
+});
+$("#frmmeetassist").validate({
+  errorElement: 'div',
+  errorClass: 'error-block',
+  errorPlacement: function (error, element) {
       // console.log("errorPlacement");
       // if element is file type, we put the error message in its grand parent
       if (element.prop("type") === "file") {
@@ -460,10 +462,11 @@ $(function () {
       } else {
         error.insertBefore($(element).parent('div.input-control'));
       }
-    }
-  });
+  }
+});
 
-  $('form#frmlounge').on('submit', function (event) {
+
+$('form#frmlounge').on('submit', function (event) {
     //Add validation rule for dynamically generated name fields
     //Add validation rule for dynamically generated email fields
     $('.ticketfile').each(function () {
@@ -489,8 +492,7 @@ $(function () {
         error.insertBefore($(element).parent('div.input-control'));
       }
     }
-  });
-  //RCAV1-171 End
+  });//RCAV1-171 End
 
 
   /*$('.proceed_payment_btn').prop('disabled', true);

@@ -62,6 +62,18 @@ $.fn.upform = function () {
         }
     });
 
+    // automaticaly open the select2 when it gets focus
+    jQuery(document).on('focus', '.select2', function() {
+        jQuery(this).siblings('select').select2('open');
+    });
+
+    // when the select2 closes advance focus to the next field
+    jQuery(".select2").select2().on("select2:close", function(e) {
+        var nextId = getNextFocusableFieldId(jQuery(this).attr('id'));
+        // set focus to the next field
+        jQuery('#' + nextId).focus().select();
+    });
+
     // $(container).find('.input-block input[type="radio"]').keydown(function(evt) {
     //     if (evt.which) {
     //         var charStr = String.fromCharCode(evt.which);
@@ -213,7 +225,6 @@ $(document).ready(function () {
     });
 
 });
-
 
 function numberOnly(txt, e) {
     var arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
@@ -564,6 +575,27 @@ function closeAllLists(elmnt, inp) {
     var x = $input.siblings('ul.hiddenul');
     if (x) x = x[0].getElementsByTagName('li');
     removeActive(x);
+}
+
+// return the id of the next focusable field
+function getNextFocusableFieldId(idIn) {
+    var focusables = jQuery("input, select, textarea");
+    var reachedId = false;
+    var id = '';
+    var nextId = '';
+    jQuery.each(focusables, function(index, value) {
+        id = jQuery(this).attr('id');
+        // if we reached the id last time set the nextId and exit each
+        if (reachedId) {
+            nextId = id;
+            return false;
+        }
+        // if the ids match set the flag for the next iteration
+        if (id == idIn) {
+            reachedId = true;
+        }
+    });
+    return nextId;
 }
 
 

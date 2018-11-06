@@ -343,6 +343,10 @@ $(function () {
             }) + " " + mydate.getFullYear();
             $('#traval_date').html(ordDate);
             $('.datepkr.active').removeClass('active').next().click();
+
+            // automaticaly open the select2 when it gets focus
+            // $(this).closest('.select').next().select2('open');
+            // $(this).siblings('select:enabled').select2('open');
         }
     });
 
@@ -874,7 +878,7 @@ $(function () {
                 }
             });
             $.ajax({
-                url: "/projects/rca_website_l/public/ajaxcheckotp",
+                url: "/rca_website_l/public/ajaxcheckotp",
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -942,8 +946,8 @@ $(function () {
             },
             photograph: {
                 required: true,
-                accept: "image/jpeg, image/jpg",
-                extension: "jpg,jpeg"
+                accept: "image/jpeg, image/jpg, application/pdf",
+                extension: "jpg,jpeg,pdf"
                 //accept: "video/mp4"
             },
             residing_code: {
@@ -2939,10 +2943,6 @@ $(function () {
 
         var not_eligible_error                  = 'Travelling To and Residing In destinations should not be the same.';
         var sorry_message                       = 'Sorry! <br> We currently do not service for the combination that you have selected. <br> However, we are adding multiple countries and combinations to our website. Stay tuned for more information.';
-
-        console.log("travel_to : " + travel_to);
-        console.log("citizen_to : " + citizen_to);
-        console.log("residing_in : " + residing_in);
 
 
 

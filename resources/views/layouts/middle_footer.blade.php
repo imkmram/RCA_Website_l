@@ -180,7 +180,7 @@
                         <a href="https://www.redcarpetassist.com/uae">
                             <img src="svg/dubai_mini.svg" alt="" width="70" />
                             <span class="_aboutxt medium">
-                                <h4>UAE eVisa</h4>
+                                <h4>United Arab Emirates eVisa</h4>
                                 <p>Citizens of India can apply</p>
                             </span>
                             </a>

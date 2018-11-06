@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/my_style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/mobileResponsive.css')}}">
-<!--Parag TypeForm CSS-->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.css"> --><!--Parag TypeForm CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('css/dropdown.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/transition.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/icon.min.css')}}">

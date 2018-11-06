@@ -19,9 +19,9 @@ use App\Models\ApplicationrelationDetails;
 use App\Models\ApplicationserviceDetails;
 use App\Models\VisatypeDetails;
 use App\Models\EvisaAppDetails;
-use DB;
-use Response;
-use Session;
+// use DB;
+// use Response;
+//use Session;
 class Commonfunction {
   public static function ajax_get_display_country_list()
   {

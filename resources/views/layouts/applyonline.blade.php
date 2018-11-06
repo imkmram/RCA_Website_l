@@ -170,20 +170,49 @@
                                           </div>
                                        </div>
                                        <div class="input-control outerInFoc">
-                                           <select id="airport_code"  class="__select_drop select" name="airport_code">
+
+                                       <!-- <div class="ui-widget">
+                                        <label>Your preferred programming language: </label>
+                                        <select id="combobox">
+                                          <option value="">Select one...</option>
+                                          <option value="ActionScript">ActionScript</option>
+                                          <option value="AppleScript">AppleScript</option>
+                                          <option value="Asp">Asp</option>
+                                          <option value="BASIC">BASIC</option>
+                                          <option value="C">C</option>
+                                          <option value="C++">C++</option>
+                                          <option value="Clojure">Clojure</option>
+                                          <option value="COBOL">COBOL</option>
+                                          <option value="ColdFusion">ColdFusion</option>
+                                          <option value="Erlang">Erlang</option>
+                                          <option value="Fortran">Fortran</option>
+                                          <option value="Groovy">Groovy</option>
+                                          <option value="Haskell">Haskell</option>
+                                          <option value="Java">Java</option>
+                                          <option value="JavaScript">JavaScript</option>
+                                          <option value="Lisp">Lisp</option>
+                                          <option value="Perl">Perl</option>
+                                          <option value="PHP">PHP</option>
+                                          <option value="Python">Python</option>
+                                          <option value="Ruby">Ruby</option>
+                                          <option value="Scala">Scala</option>
+                                          <option value="Scheme">Scheme</option>
+                                        </select>
+                                      </div> -->
+
+                                          <!--select id="airport_code" class="__select_drop" name="airport_code" required="">
                                              <option selected="true" value="">Airport of Arrival</option>
                                              @foreach($airport_arr as $key=>$val)
                                              <option value="{{$val['airport_id']}}">{{$val['airport_name']}}</option>
                                              @endforeach
-                                          </select>
-
-                                          <!-- <input type="text" name="airport_code_text" class="__select_drop inputF" value="" autocomplete="off" required="" />
+                                          </select-->
+                                          <input type="text" name="airport_code_text" class="__select_drop inputF" value="" autocomplete="off" required="" />
                                           <ul class="hiddenul">
                                             @foreach($airport_arr as $key=>$val)
                                               <li data-val="{{$val['airport_id']}}">{{$val['airport_name']}}</li>
                                             @endforeach 
                                           </ul>
-                                          <input type="hidden" name="airport_code" class="inputH" value=""> -->
+                                          <input type="hidden" name="airport_code" class="inputH" value="">
 
 
                                         </div>

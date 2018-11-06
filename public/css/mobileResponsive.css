@@ -11,6 +11,25 @@ ul.flex-direction-nav {
     height: 0;
 }
 
+select#airport_code+span .select2-selection__arrow {
+    display: none;
+}
+
+.select2-container--open .select2-dropdown {
+    margin-top: 20px;
+}
+
+
+#select2-airport_code-container {
+    font-size: 35px;
+    /* line-height: 45px !important; */
+    color: #333 !important;
+    padding: 0 0 13px 10px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+}
+
 .__ticker {
     background: #e74630;
     color: #fff;
@@ -794,6 +813,17 @@ span.select2-selection--single {
 
 .mobile .__round_wrapper.__frm_gutter .__form_inline .__frm_grp input {
     width: 100% !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #e74630 !important;
+    color: white;
+}
+
+#select2-airport_code-results .select2-results__option {
+    font-size: 19px !important;
+    padding: 11px 20px 11px 20px !important;
+    margin-top: 5px !important;
 }
 
 div#ads+div {
