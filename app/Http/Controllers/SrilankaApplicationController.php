@@ -412,36 +412,54 @@ public function saveSLformdata(Request $request){
 }
 
 public function srilankareviewform(Request $request) {
-	$getrequest = $request->all();
-	$order_id = $request->route('ordid');
-	$extractdata = array();
+	$getrequest 	= $request->all();
+	$order_id 		= $request->route('ordid');
+	$extractdata 	= array();
+	
 	
 	if(!empty($order_id)) {
-		$getorderdetails = OrderDetails::join('users','users.user_id','=','order_details.user_id')->where('order_id','=',$order_id)->first();
 
-	    $applicant_id = ApplicantProfiles::where('order_id','=',$order_id)->orderby('profile_id','DESC')->get()->first();
+		$country_arr 			= array();
+		$travel_type_text		= null;
 
-	    $getserviceiddetails = DB::table('tbl_user_service_details')->where('order_id','=',$order_id)->where('applicant_id','=',$applicant_id->profile_id)->first();
+		$getorderdetails 		= OrderDetails::join('users','users.user_id','=','order_details.user_id')->where('order_id','=',$order_id)->first();
 
-	    $getpassportdetails = DB::table('passport_details')->where('applicant_id','=',$applicant_id->profile_id)->first();
+	    $applicant_id 			= ApplicantProfiles::where('order_id','=',$order_id)->orderby('profile_id','DESC')->get()->first();
 
-	    $getotherdetails = DB::table('application_relationdetails')->where('applicant_id','=',$applicant_id->profile_id)->first();
+	    $getserviceiddetails 	= DB::table('tbl_user_service_details')->where('order_id','=',$order_id)->where('applicant_id','=',$applicant_id->profile_id)->first();
 
-	    $getservice = PricingMaster::where('nationality', "India")
-								->where('product_id',1)
-								->first();
-		$getmarital = DB::table('marital_status')->where('enabled','Y')->get();
-		$getcity = DB::table('cities')->where('isactive','Y')->orderby('city_name','ASC')->get();
-		$getstate = DB::table('states')->where('isactive','Y')->orderby('state_name','ASC')->get();
-		$getcountry = DB::table('countries')->where('enabled','Y')->orderby('country_name','ASC')->get();
-		$getoccupationname = DB::table('tbl_occupation')->where('active','Y')->orderby('occupation_name','ASC')->get();
+	    $getpassportdetails 	= DB::table('passport_details')->where('applicant_id','=',$applicant_id->profile_id)->first();
+
+	    $getotherdetails 		= DB::table('application_relationdetails')->where('applicant_id','=',$applicant_id->profile_id)->first();
+
+	    $getservice 			= PricingMaster::where('nationality', "India")->where('product_id',1)->first();
+		$getmarital 			= DB::table('marital_status')->where('enabled','Y')->get();
+		$getcity 				= DB::table('cities')->where('isactive','Y')->orderby('city_name','ASC')->get();
+		$getstate 				= DB::table('states')->where('isactive','Y')->orderby('state_name','ASC')->get();
+		$getcountry 			= DB::table('countries')->where('enabled','Y')->orderby('country_name','ASC')->get();
+		$getoccupationname 		= DB::table('tbl_occupation')->where('active','Y')->orderby('occupation_name','ASC')->get();
 		$gettouristpurpose		= DB::table('india_evisa_purpose')->where('service_id',5)->where('is_active','Y')->orderby('purpose_name','ASC')->get();
 		$getbusinesspurpose		= DB::table('india_evisa_purpose')->where('service_id',6)->where('is_active','Y')->orderby('purpose_name','ASC')->get();
 		$gettransitpurpose		= DB::table('india_evisa_purpose')->where('service_id',7)->where('is_active','Y')->orderby('purpose_name','ASC')->get();
+	
+		foreach($getcountry as $key => $val){
+			$country_arr[] = array('country_id'=>$val->country_id,'country_name'=>$val->country_name);
+		}		
 
-		// $getpurposename = DB::table('india_evisa_purpose')->where('purpose_id',$getserviceiddetails->purpose_id)->first();	
+
+		if( !empty($getserviceiddetails->service_id) == 5 ){
+			$travel_type_text = "Tourist";
+		} else if(!empty($getserviceiddetails->service_id) == 6 ){
+			$travel_type_text = "Business";
+		} else if(!empty($getserviceiddetails->service_id) == 7 ){
+			$travel_type_text = "Transit";
+		}
+
+
 
 		$extractdata = array(
+
+			'travel_type_text'=>$travel_type_text,
 	    	'order_id'=> !empty($getorderdetails->order_id)?$getorderdetails->order_id:NULL,
 	    	'order_code'=> !empty($getorderdetails->order_code)?$getorderdetails->order_code:NULL,
 	    	'user_id'=> !empty($getorderdetails->user_id)?$getorderdetails->user_id:NULL,
@@ -474,14 +492,54 @@ public function srilankareviewform(Request $request) {
 	    	'pres_phone'=> !empty($getotherdetails->pres_phone)?$getotherdetails->pres_phone:NULL,
 	    	'application_details'=> !empty($getotherdetails->application_details)?json_decode($getotherdetails->application_details, true):NULL,
 	    	'is_review_updated'=>!empty($getorderdetails->is_review_updated)?$getorderdetails->is_review_updated:NULL
-	    );					
-		echo "<pre>";print_r($extractdata);exit;						
-	}
-	if($request->isMethod('post')) {
+	    );
 
+
+		$extractdata['application_details']['salutation_text'] = null;
+		if(isset($extractdata['application_details']['salutation']) && !empty($extractdata['application_details']['salutation'])){
+
+			if($extractdata['application_details']['salutation'] == "dr"){
+				$extractdata['application_details']['salutation_text'] = "DR";
+			}elseif($extractdata['application_details']['salutation'] == "master"){
+				$extractdata['application_details']['salutation_text'] = "MASTER";
+			}elseif($extractdata['application_details']['salutation'] == "miss"){
+				$extractdata['application_details']['salutation_text'] = "MISS";
+			}elseif($extractdata['application_details']['salutation'] == "mr"){
+				$extractdata['application_details']['salutation_text'] = "MR";
+			}elseif($extractdata['application_details']['salutation'] == "mrs"){
+				$extractdata['application_details']['salutation_text'] = "MRS";
+			}elseif($extractdata['application_details']['salutation'] == "ms"){
+				$extractdata['application_details']['salutation_text'] = "MS";
+			}elseif($extractdata['application_details']['salutation'] == "rev"){
+				$extractdata['application_details']['salutation_text'] = "REV";
+			}
+		}
+
+		$extractdata['gender_text'] = null;
+		if(isset($extractdata['gender']) && !empty($extractdata['gender'])){
+
+			if($extractdata['gender'] == "male"){
+				$extractdata['gender_text'] = "Male";	
+			}elseif($extractdata['gender'] == "female"){
+				$extractdata['gender_text'] = "Female";	
+			}
+		}
+
+
+		$extractdata['application_details']['country_of_birth_text'] = null;
+		if(isset($extractdata['application_details']['country_of_birth']) && !empty($extractdata['application_details']['country_of_birth'])){
+
+			$country_of_birth_arr = DB::table('countries')->where('country_id','=',$extractdata['application_details']['country_of_birth'])->where('enabled','=','Y')->first();
+			$extractdata['application_details']['country_of_birth_text'] = $country_of_birth_arr->country_name;
+
+		}
+
+	    //echo "<pre><br>"; print_r($extractdata);exit;
+
+	    return view('srilanka/srilankareviewform', compact('extractdata','getservice','getmarital','country_arr','gettouristpurpose','getbusinesspurpose','gettransitpurpose'));					
 	}
 
-	return view('srilanka/srilankareviewform', compact('extractdata','getservice','getmarital','getcountry','gettouristpurpose','getbusinesspurpose','gettransitpurpose'));
+	
 }
 
 public function saveUserDetails($getpostdata){

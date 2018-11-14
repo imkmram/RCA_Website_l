@@ -1386,7 +1386,7 @@
                                        <div class="labels">
                                           <div class="qs_list"></div>
                                           <div class="qs_body">
-                                             Reference Name in {{!empty($visa_data['ref_name_in_nation'])?strtoupper($visa_data['ref_name_in_nation']):NULL}}
+                                             Reference Name in {{!empty($getpostdata['residing_in'])?strtoupper($getpostdata['residing_in']):NULL}}
                                              <span class="strike">*</span>
                                              <div class="qs_sub"></div>
                                           </div>
@@ -1399,7 +1399,7 @@
                                        <div class="labels">
                                           <div class="qs_list"></div>
                                           <div class="qs_body">
-                                             Address in {{!empty($visa_data['ref_name_in_nation'])?strtoupper($visa_data['ref_name_in_nation']):NULL}}
+                                             Address in {{!empty($getpostdata['residing_in'])?strtoupper($getpostdata['residing_in']):NULL}}
                                              <span class="strike">*</span>
                                              <div class="qs_sub"></div>
                                           </div>
@@ -1412,7 +1412,7 @@
                                        <div class="labels">
                                           <div class="qs_list"></div>
                                           <div class="qs_body">
-                                             Phone No in {{!empty($visa_data['ref_name_in_nation'])?strtoupper($visa_data['ref_name_in_nation']):NULL}}
+                                             Phone No in {{!empty($getpostdata['residing_in'])?strtoupper($getpostdata['residing_in']):NULL}}
                                              <span class="strike">*</span>
                                              <div class="qs_sub"></div>
                                           </div>

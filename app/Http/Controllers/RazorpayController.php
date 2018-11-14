@@ -86,8 +86,53 @@ class RazorpayController extends ApplicationController
                 $ord_id = $response['order_code'];
                 $py_status = $response['order_status'];
                 $amt = $response['amount'];
+                $trans_ref = $response['txnid'];
                 
-                $content = "Dear $cust_name, <br>Welcome to the RedCarpet Assist family. We would like to thank you for your order. Our team is already processing your details and will be in touch for any additional information required to complete the order. </br> Please find your payment receipt.<br><br><table><tr><th>Transaction date</th><td>$trans_date</td></tr><tr><th>Ref. ID</th><td>$ord_id</td></tr><tr><th>Payment Status</th><td>$py_status</td></tr><tr><th>Amount</th><td>$amt</td></tr></table><br><br>Incase you do need to get in touch with us urgently, please do call us at +91 22 6253 8600 or email us at customercare@redcarpetassist.com. We work Monday to Saturday, 10am to 8pm Indian Standard Time (GMT +5.30)<br><br>Your RedCarpet Assist Team.<br><br><i>Add support@redcarpetassist.com to your address book to ensure that our mails reach your Inbox.</i>";
+                $content = "Dear $cust_name,<br><br>Welcome to the RedCarpet Assist family. We would like to thank you for your order. Our team is already processing your details and will be in touch for any additional information required to complete the order.<br><br><br>
+
+                    <table style='text-align:center; line-height:35px; font-family:Open Sans; margin:0 auto; font-weight: normal; max-width:550px; width:100%;'>
+        <tr>
+            <td colspan='2'>
+                <h2 style='font-size: 30px; color:#ed1c24; font-weight: 600; margin:0 auto'>Congratulations</h2>
+            </td>
+        <tr>
+            <td colspan='2' style='text-align: center'>
+                <p style='margin: 5px 0; font-size: 17px;'>Thank you for your payment. Please find your payment receipt</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan='2' style='text-align: center; font-size: 17px;'>Order Number : <strong style='color:#333; font-weight:600;font-size: 17px;'>$ord_id</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan='2' style='text-align: center;padding-bottom:20px;font-size: 17px;'>Transaction Reference Number : <strong style='color:#333; font-weight:600;font-size: 17px;'>$trans_ref</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style='text-align: left;padding: 0px 0 0 30px;font-size: 17px;'>You Purchased<br><strong style='color:#333; font-weight:600;font-size: 17px;'>PAR-Pre
+                    Arrival
+                    Registation</strong></td>
+            <td width='30%' style='text-align: right;'><span style='font-size:25px;'><strong style='color:#333; font-weight:600;padding: 0 30px 0 0px;'>$ $amt</strong></span></td>
+        </tr>
+        <tr>
+            <td colspan='2' style='padding: 0 30px 0 30px;'>
+                <hr style='border-top:thin solid #bbb;padding: 0 30px 0 30px;'>
+            </td>
+        </tr>
+        <tr>
+            <td style='text-align: left; font-size:25px;padding: 0 0 0 30px;'>Total</td>
+            <td width='30%' style='text-align: right'><span style='font-size:25px;'><strong style='color:#333;font-weight:600; padding: 0 30px 0 0px;'>$ $amt</strong></span></td>
+        </tr>
+    </table>
+
+    <table style='text-align:center; line-height:35px; font-family:Open Sans; margin:0 auto; font-weight: normal; max-width:600px; width:100%;'>
+        <tr>
+            <td colspan='2' style='text-align: center; padding-top:20px; font-size:17px;'>Our RedCarpet Assist Team will proceed with your application and will keep in touch with you. In case you need to speak to us, call us on +91 22-6253 8600 or email us at <span style='color:#ed1c24;'>customercare@redcarpetassist.com</span>
+            </td>
+        </tr>
+    </table>
+
+                    <br><br><br>Your RedCarpet Assist Team.<br><br><i>Add support@redcarpetassist.com to your address book to ensure that our mails reach your Inbox.</i>";
 
                 $subject ="We are rolling out the RedCarpet for you";
                 $sendmail->sendEmail("support@redcarpetassist.com",$to,null,null, $subject, $content);

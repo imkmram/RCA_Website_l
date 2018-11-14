@@ -878,7 +878,7 @@ $(function () {
                 }
             });
             $.ajax({
-                url: "/rca_website_l/public/ajaxcheckotp",
+                url: "/projects/rca_website_l/public/ajaxcheckotp",
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -1597,13 +1597,17 @@ $(function () {
 
 
     //$('#grandparent_details').hide();
+    $('#grandparent_dtls').hide(); //RCAV1-76
+    
     $('input[name="grandparent_flag1"]').on('change', function () {
         var value = $(this).val();
         if (value == "Y") {
             $('#grandparent_details').show();
+            $('#grandparent_dtls').show(); //RCAV1-76
             $('input[name="grandparent_details"]').attr('required', '');
         } else {
             $('#grandparent_details').hide();
+            $('#grandparent_dtls').hide(); //RCAV1-76
             $('input[name="grandparent_details"]').removeAttr('required');
             $('#frmreviewind input[name="grandparent_details"]').val('');
         }

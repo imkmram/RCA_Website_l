@@ -160,7 +160,7 @@
                                              <option value="F" {{isset($getocr['sex']['abbr']) && ($getocr['sex']['abbr']=='F')?'selected':NULL}}>FEMALE</option>
                                              <option value="T" {{isset($getocr['sex']['abbr']) && ($getocr['sex']['abbr']=='T')?'selected':NULL}}>TRANSGENDER</option>
                                           </select-->
-                                          <input type="text" name="gender_text" class=" __select_drop inputF" autocomplete="off" value="{{isset($getpostdata['gendername']) && !empty($getpostdata['gendername'])?$getpostdata['gendername']:NULL}}" required="" />
+                                          <input type="text" name="gender_text" class=" __select_drop inputF" autocomplete="off" value="{{isset($getpostdata['gendername']) && !empty($getpostdata['gendername'])?$getpostdata['gendername']:NULL}}" />
                                           <ul class="hiddenul">
                                               <li data-val="M">MALE</li>
                                               <li data-val="F">FEMALE</li>
@@ -180,7 +180,7 @@
                                           </div>
                                        </div>
                                        <div class="input-control">
-                                          <input type="text" id="dob" name="dob" class="dob datepicker" value="{{isset($ocrdob) && !empty($ocrdob)?$ocrdob:NULL}}" required="">
+                                          <input type="text" id="dob" name="dob" class="dob datepicker" value="{{isset($ocrdob) && !empty($ocrdob)?$ocrdob:NULL}}">
                                        </div>
                                     </div>
                                        <div class="input-block" id="contry_of_birth">
@@ -199,7 +199,7 @@
                                                 <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                                 @endforeach
                                              </select-->
-                                            <input type="text" name="cob_text" required="" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['country_of_name'])?$getpostdata['country_of_name']:NULL}}" />      
+                                            <input type="text" name="cob_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['country_of_name'])?$getpostdata['country_of_name']:NULL}}" />      
                                             <ul class="hiddenul">
                                                 @foreach($getcountry as $row)
                                                   <li data-val="{{$row->country_id}}">{{$row->country_name}}</li>
@@ -251,8 +251,8 @@
                                                 <option value="{{$row->religion_id}}">{{$row->religion_name}}</option>
                                                 @endforeach
                                              </select-->
-                                              <input type="hidden" name="" class="inputH" value="{{isset($getpostdata['religion']) && !empty($getpostdata['religion'])?$getpostdata['religion']:NULL}}">
-                                             <input type="text" name="religion_code_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['religionname']) && !empty($getpostdata['religionname'])?$getpostdata['religionname']:NULL}}" required=""/>
+                                              <!-- <input type="hidden" name="" class="inputH" value="{{isset($getpostdata['religion']) && !empty($getpostdata['religion'])?$getpostdata['religion']:NULL}}"> -->
+                                             <input type="text" name="religion_code_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['religionname']) && !empty($getpostdata['religionname'])?$getpostdata['religionname']:NULL}}"/>
                                               <ul class="hiddenul">
                                                 @foreach($getreligion as $row)
                                                   <li data-val="{{$row->religion_id}}">{{$row->religion_name}}</li>
@@ -291,7 +291,7 @@
                                                 <option value="{{$row->id}}">{{$row->qualification}}</option>
                                                 @endforeach
                                              </select-->
-                                             <input type="text" name="" class="__select_drop inputF" autocomplete="off" required="" value="{{isset($getpostdata['qualiname']) && !empty($getpostdata['qualiname'])?$getpostdata['qualiname']:NULL}}" />
+                                             <input type="text" name="qualification_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['qualiname']) && !empty($getpostdata['qualiname'])?$getpostdata['qualiname']:NULL}}" />
                                               <ul class="hiddenul">
                                                 @foreach($getqualification as $row)
                                                   <li data-val="{{$row->id}}">{{$row->qualification}}</li>
@@ -317,7 +317,7 @@
                                                 <option value="{{$val->country_id}}" {{isset($getocr['nationality']['country_id']) && ($val->country_id==$getocr['nationality']['country_id'])?'selected':NULL}}>{{$val->country_name}}</option>
                                                 @endforeach
                                              </select-->
-                                             <input type="text" name="" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['nationname']) && !empty($getpostdata['nationname'])?$getpostdata['nationname']:NULL}}"  required=""/>
+                                             <input type="text" name="nationality_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['nationname']) && !empty($getpostdata['nationname'])?$getpostdata['nationname']:NULL}}"/>
                                               <ul class="hiddenul">
                                                 @foreach($getcountry as $val)
                                                   <li data-val="{{$val->country_id}}" {{isset($getocr['nationality']['country_id']) && ($val->country_id==$getocr['nationality']['country_id'])?'selected':NULL}}">{{$val->country_name}}</li>
@@ -342,7 +342,7 @@
                                                 <option value="By Birth">By Birth</option>
                                                 <option value="Naturalization">Naturalization</option>
                                              </select-->
-                                             <input type="text" name="" class="__select_drop inputF" autocomplete="off"  required="" id="aquired_nation" value="{{isset($getpostdata['aquired_nation']) && !empty($getpostdata['aquired_nation'])?$getpostdata['aquired_nation']:NULL}}" />
+                                             <input type="text" name="aquired_nation_text" class="__select_drop inputF" autocomplete="off" id="aquired_nation" value="{{isset($getpostdata['aquired_nation']) && !empty($getpostdata['aquired_nation'])?$getpostdata['aquired_nation']:NULL}}" />
                                                 <ul class="hiddenul">
                                                     <li data-val="">Select...</li>
                                                     <li data-val="By Birth">By Birth</li>
@@ -368,7 +368,7 @@
                                                 <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                                 @endforeach
                                              </select-->
-                                             <input type="text" name="" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['prev_nation_name']) && !empty($getpostdata['prev_nation_name'])?$getpostdata['prev_nation_name']:NULL}}" />
+                                             <input type="text" name="prev_nationality_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['prev_nation_name']) && !empty($getpostdata['prev_nation_name'])?$getpostdata['prev_nation_name']:NULL}}" />
                                                 <ul class="hiddenul">
                                                     @foreach($getcountry as $row)
                                                        <li data-val="{{$row->country_id}}">{{$row->country_name}}</li>
@@ -434,7 +434,7 @@
                                              </div>
                                           </div>
                                           <div class="input-control">
-                                             <input type="text" id="doi" name="doi" class="dob datepicker" required="" value="{{isset($getpostdata['pp_issue_date']) && !empty($getpostdata['pp_issue_date'])?$getpostdata['pp_issue_date']:NULL}}">
+                                             <input type="text" id="doi" name="doi" class="dob datepicker" value="{{isset($getpostdata['pp_issue_date']) && !empty($getpostdata['pp_issue_date'])?$getpostdata['pp_issue_date']:NULL}}">
                                           </div>
                                        </div>
                                        <div class="input-block datepkr">
@@ -447,7 +447,7 @@
                                              </div>
                                           </div>
                                           <div class="input-control">
-                                             <input type="text" id="doe" name="doe" class="dob datepicker" required="" value="{{isset($ocrexpiry) && !empty($ocrexpiry)?$ocrexpiry:''}}">
+                                             <input type="text" id="doe" name="doe" class="dob datepicker" value="{{isset($ocrexpiry) && !empty($ocrexpiry)?$ocrexpiry:''}}">
                                           </div>
                                        </div>
                                        <div class="input-block">
@@ -487,7 +487,7 @@
                                                    <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                                    @endforeach
                                                 </select-->
-                                                <input type="text" name="" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['prev_passport_country_name']) && !empty($getpostdata['prev_passport_country_name'])?$getpostdata['prev_passport_country_name']:NULL}}" />
+                                                <input type="text" name="prev_passport_country_issue_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['prev_passport_country_name']) && !empty($getpostdata['prev_passport_country_name'])?$getpostdata['prev_passport_country_name']:NULL}}" />
                                                 <ul class="hiddenul">
                                                     @foreach($getcountry as $row)
                                                        <li data-val="{{$row->country_id}}">{{$row->country_name}}</li>
@@ -552,7 +552,7 @@
                                                    <option value="{{$row->country_id}}">{{$row->country_name}}</option>
                                                    @endforeach
                                                 </select-->
-                                                <input type="text" name="" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['other_ppt_nationality_name']) && !empty($getpostdata['other_ppt_nationality_name'])?$getpostdata['other_ppt_nationality_name']:NULL}}" />
+                                                <input type="text" name="other_ppt_nationality_text" class="__select_drop inputF" autocomplete="off" value="{{isset($getpostdata['other_ppt_nationality_name']) && !empty($getpostdata['other_ppt_nationality_name'])?$getpostdata['other_ppt_nationality_name']:NULL}}" />
                                                 <ul class="hiddenul">
                                                     @foreach($getcountry as $row)
                                                        <li data-val="{{$row->country_id}}">{{$row->country_name}}</li>
