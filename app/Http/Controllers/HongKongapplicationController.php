@@ -376,6 +376,74 @@ public function evisahongkongform(Request $request){
 
 			$ordid = $this->saveOrderDetails($data_ord);
 
+			//RCAV1-202 - START
+			$app_data = array(
+				'user_id' => $uid,
+				'username' => NULL,
+				'mobile_number' => !empty($getrequest['phone_number'])?$getrequest['phone_number']:NULL,
+				'nationality' => !empty($getrequest['citizen_to'])?$getrequest['citizen_to']:NULL,
+				'country' => !empty($getrequest['citizen_to'])?$getrequest['citizen_to']:NULL,
+				'order_id' => $ordid
+			);
+
+			$this->saveApplicantProfile($app_data);
+
+			$applicant_id = ApplicantProfiles::select(DB::raw('max(profile_id) as profile_id'))->get()->first();
+
+			if( isset($applicant_id->profile_id) && (!empty($applicant_id->profile_id)) ){
+
+				if( isset($getrequest['frontpage']) && (!empty($getrequest['frontpage'])) ){
+
+			    	$passport_front 	= $request->file('frontpage');
+			    	$doc_type 			= "PASSPORT_FRONT";
+			    	$input['imagename'] = "passport-front-".time().'.'.$passport_front->getClientOriginalExtension();
+				    $imgsize 			= $passport_front->getClientSize();
+				    $imgtype 			= $passport_front->getClientMimeType();
+				    $destinationPath 	= public_path('doc-upload/');
+				    
+				    $request->file('frontpage')->move($destinationPath, $input['imagename']);
+
+				    $savedocdetails 	= DocumentDetails::firstOrCreate(['applicant_id' => $applicant_id->profile_id,'doc_type_id'=>1]);
+
+				    $savedocdetails->user_id 		= $uid;
+				    $savedocdetails->applicant_id 	= $applicant_id->profile_id;
+				    $savedocdetails->doc_type 		= $doc_type;
+				    $savedocdetails->doc_type_id 	= 1;
+				    $savedocdetails->doc_size 		= $imgsize;
+				    $savedocdetails->doc_url 		= "/doc-upload/".$input['imagename'];
+				    $savedocdetails->doc_mime_type 	= $imgtype;
+				    $savedocdetails->save();	
+				}
+
+
+				if( isset($getrequest['photograph']) && (!empty($getrequest['photograph'])) ){
+
+			    	$photograph 		= $request->file('photograph');
+			    	$doc_type 			= "PHOTO";
+			    	$input['imagename'] = "photograph-".time().'.'.$photograph->getClientOriginalExtension();
+				    $imgsize 			= $photograph->getClientSize();
+				    $imgtype 			= $photograph->getClientMimeType();
+				    $destinationPath 	= public_path('doc-upload/');
+				    
+				    $request->file('photograph')->move($destinationPath, $input['imagename']);
+
+				    $savedocdetails = DocumentDetails::firstOrCreate(['applicant_id' => $applicant_id->profile_id,'doc_type_id'=>3]);
+
+				    $savedocdetails->user_id 		= $uid;
+				    $savedocdetails->applicant_id 	= $applicant_id->profile_id;
+				    $savedocdetails->doc_type 		= $doc_type;
+				    $savedocdetails->doc_type_id 	= 3;
+				    $savedocdetails->doc_size 		= $imgsize;
+				    $savedocdetails->doc_url 		= "/doc-upload/".$input['imagename'];
+				    $savedocdetails->doc_mime_type 	= $imgtype;
+				    $savedocdetails->save();	
+				}
+			}
+
+			//RCAV1-202 - END
+
+			
+
 			$user_leads_data = array(
 				'session_id'=> session()->getId(),
 				'name' => !empty($getrequest['user_name'])?$getrequest['user_name']:NULL,

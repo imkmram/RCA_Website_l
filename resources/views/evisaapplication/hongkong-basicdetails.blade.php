@@ -120,6 +120,63 @@
                                              <div class="press_enter">PRESS TAB</div>
                                          </div>
                                      </div>
+
+                                    <!-- RCAV1-202 - START --> 
+                                    <div class="input-block">
+                                       <div class="labels">
+                                          <div class="qs_list"></div>
+                                          <div class="qs_body">
+                                             Upload Passport Frontpage
+                                             <span class="strike">*</span>
+                                             <div class="qs_sub">Some Information</div>
+                                          </div>
+                                       </div>
+                                       <div class="input-control">
+                                          <div class="__document_upload_box">
+                                             <!-- passport front -->
+                                             <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput">
+                                                   <div class="doc-head">Colored frontpage of valid passport</div>
+                                                </div>
+                                                <div>
+                                                   <span class="btn-file"><span class="fileinput-new">Upload</span><span class="fileinput-exists">Change</span>
+                                                   <input type="file" name="frontpage" required="" class="required" accept="image/jpeg">
+                                                   </span>
+                                                   <a href="#" class="btn btn-default fileinput-exists" id="front_remove" data-dismiss="fileinput" onclick="removeforntthumb()">Remove</a> 
+                                                </div>
+                                             </div>
+                                             <!-- end -->
+                                             <!-- passport photo -->
+                                             <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput">
+                                                   <div class="doc-head">Passport Size photograph</div>
+                                                </div>
+                                                <div>
+                                                   <span class="btn-file"><span class="fileinput-new">Upload</span><span class="fileinput-exists">Change</span>
+                                                   <input type="file" name="photograph" required="" class="required" accept="image/jpeg">
+                                                   </span>
+                                                   <a href="#" class="btn btn-default fileinput-exists" id="photo_remove" data-dismiss="fileinput" onclick="removephotothumb()">Remove</a>
+                                                </div>
+                                             </div>
+                                             <!-- end -->
+                                          </div>
+                                          <div class="col-md-12">
+                                             <p><strong>Photo Specifications: </strong></p>
+                                             <ul class="__ct_decimal">
+                                                <li>Format – JPEG</li>
+                                                <li>Size – Minimum 10 KB , Maximum 1 MB</li>
+                                                <li>The minimum dimensions are 350 pixels (width) x 350 pixels (height).</li>
+                                                <li>Recent front facing photograph with white background to be uploaded by the applicant.</li>
+                                                <li>Do not crop the Passport Image to use it as your recent photograph. Upload clear front facing photograph with preferable white/light coloured background.</li>
+                                                <li>The application is liable to be rejected if the uploaded photograph are not clear and as per specification.</li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>                                     
+                                    <!-- RCAV1-202 - END --> 
+
+
+                                     
                                  </div>
                               </div>
                            </div>
