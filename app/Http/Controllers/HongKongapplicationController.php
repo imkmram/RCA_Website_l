@@ -858,7 +858,7 @@ public function hongkongreviewform(Request $request){
 		$getcity = DB::table('cities')->where('isactive','Y')->orderby('city_name','ASC')->get();
 		$getstate = DB::table('states')->where('isactive','Y')->orderby('state_name','ASC')->get();
 		$getcountry = DB::table('countries')->where('enabled','Y')->orderby('country_name','ASC')->get();
-		$getoccupationname = DB::table('tbl_occupation')->where('active','Y')->orderby('occupation_name','ASC')->get();
+		$getoccupation = DB::table('tbl_occupation')->where('active','Y')->orderby('occupation_name','ASC')->get(); //RCAV1-202
 
 		$getpurposename = DB::table('india_evisa_purpose')->where('purpose_id',$getserviceiddetails->purpose_id)->first();
 

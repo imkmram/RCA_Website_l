@@ -196,20 +196,33 @@
                             <div class="input-block">
                                 <div class="labels block-counter"> Gender <span class="strike">*</span></div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" name="gender_text" class="__select_drop inputF" value="{{!empty($getpostdata['gender'])?$getpostdata['gender']:NULL}}" autocomplete="off">
+                                    <select class="__select_drop select" name="gender" required="">
+                                        <option class="hidden_li" value="Male">Male</option>
+                                        <option class="hidden_li" value="Female">Female</option>
+                                    </select>
+                                    <!-- <input type="text" placeholder="Select an option" name="gender_text" class="__select_drop inputF" value="{{!empty($getpostdata['gender'])?$getpostdata['gender']:NULL}}" autocomplete="off">
                                     <ul class="hiddenul">
                                         <li class="hidden_li" data-val="Male">Male</li>
                                         <li class="hidden_li" data-val="Female">Female</li>
                                     </ul>
-                                    <input type="hidden" id="gender" name="gender" value="{{!empty($getpostdata['gender'])?$getpostdata['gender']:NULL}}" class="inputH">
+                                    <input type="hidden" id="gender" name="gender" value="{{!empty($getpostdata['gender'])?$getpostdata['gender']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels block-counter"> Please provide your marital status <span class="strike">*</span></div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" name="marital_status_text" class="__select_drop inputF" value="{{!empty($getpostdata['marital_status_name'])?$getpostdata['marital_status_name']:NULL}}" autocomplete="off">
+
+                                        <select class="__select_drop select" name="marital_status_id" required="">
+                                            <option value="">Select an Option</option>
+                                            @if(count($getmarital)>0)
+                                            @foreach($getmarital as $val)
+                                            <option value="{{$val->marital_status_id}}">{{$val->marital_status_name}}</option>
+                                            @endforeach
+                                        @endif
+                                        </select>
+                                    <!-- <input type="text" placeholder="Select an option" name="marital_status_text" class="__select_drop inputF" value="{{!empty($getpostdata['marital_status_name'])?$getpostdata['marital_status_name']:NULL}}" autocomplete="off">
                                     <ul class="hiddenul">
                                         @if(count($getmarital)>0)
                                             @foreach($getmarital as $val)
@@ -217,10 +230,10 @@
                                         @endforeach
                                         @endif
                                     </ul>
-                                    <input type="hidden" id="marital_status_id" name="marital_status_id" value="{{!empty($getpostdata['marital_status_id'])?$getpostdata['marital_status_id']:NULL}}" class="inputH">
+                                    <input type="hidden" id="marital_status_id" name="marital_status_id" value="{{!empty($getpostdata['marital_status_id'])?$getpostdata['marital_status_id']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -320,7 +333,19 @@
                             <div class="input-block {{(!empty($getpostdata['application_details']['res_add_india']) && ($getpostdata['application_details']['res_add_india']=='Y'))?'divshow':'divhide'}}" id="res_add_ind_div_2">
                                     <div class="labels block-counter"> District/City <span class="strike">*</span></div>
                                     <div class="input-control outerInFoc">
-                                        <input type="text" id="district_city_text" name="district_city_text" placeholder="Select an option" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['state_name'])?$getpostdata['state_name']:NULL}}">
+                                        <select class="__select_drop select" name="district_city" required="">
+                                            <!-- RCAV1-202 START -->
+                                            <option value="">Select an option</option>
+                                            @if(count($data_name)>0)
+                                                @foreach($data_name as $row)
+                                                    @foreach($row as $val)
+                                                        <option value="{{$val}}">{{$val}}</option>
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                            <!-- RCAV1-202 START -->
+                                        </select>
+                                        <!-- <input type="text" id="district_city_text" name="district_city_text" placeholder="Select an option" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['state_name'])?$getpostdata['state_name']:NULL}}">
                                         <ul class="hiddenul">
                                         @if(count($data_name)>0)
                                             @foreach($data_name as $row)
@@ -330,10 +355,10 @@
                                             @endforeach
                                         @endif
                                     </ul>
-                                    <input type="hidden" id="district_city" name="district_city" value="{{!empty($getpostdata['state_name'])?$getpostdata['state_name']:NULL}}" class="inputH">
+                                    <input type="hidden" id="district_city" name="district_city" value="{{!empty($getpostdata['state_name'])?$getpostdata['state_name']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                     </div>
-                                    <div class="outerclick"></div>
+                                    <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block {{(!empty($getpostdata['application_details']['res_add_india']) && ($getpostdata['application_details']['res_add_india']=='N'))?'divshow':'divhide'}}" id="res_add_oth_div_1">
                                     <div class="labels">
@@ -350,7 +375,15 @@
                             <div class="input-block {{(!empty($getpostdata['application_details']['res_add_india']) && ($getpostdata['application_details']['res_add_india']=='N'))?'divshow':'divhide'}}" id="res_add_oth_div_2">
                                     <div class="labels block-counter"> Select your District / Country other than India <span class="strike">*</span></div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" id="district_city_oth_text" name="district_city_oth_text" class="__select_drop inputF" value="{{!empty($getpostdata['oth_country'])?$getpostdata['oth_country']:NULL}}" autocomplete="off">
+                                <select class="__select_drop select" name="district_city_oth" required="">
+                                    <option value="">Select an option</option>
+                                        @if(count($country_arr)>0)
+                                        @foreach($country_arr as $val)
+                                    <option value="{{$val}}">{{$val}}</option>
+                                        @endforeach
+                                        @endif
+                                </select>
+                                    <!-- <input type="text" placeholder="Select an option" id="district_city_oth_text" name="district_city_oth_text" class="__select_drop inputF" value="{{!empty($getpostdata['oth_country'])?$getpostdata['oth_country']:NULL}}" autocomplete="off">
                                     <ul class="hiddenul">
                                         @if(count($country_arr)>0)
                                             @foreach($country_arr as $val)
@@ -358,10 +391,10 @@
                                             @endforeach
                                         @endif
                                     </ul>
-                                    <input type="hidden" id="district_city_oth" name="district_city_oth" value="{{!empty($getpostdata['oth_country'])?$getpostdata['oth_country']:NULL}}" class="inputH">
+                                    <input type="hidden" id="district_city_oth" name="district_city_oth" value="{{!empty($getpostdata['oth_country'])?$getpostdata['oth_country']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -450,7 +483,15 @@
                                     </div>
                                 </div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" class="__select_drop inputF" autocomplete="off" id="emp_sector_text" name="emp_sector_text" value="{{!empty($getpostdata['application_details']['emp_sector'])?$getoccupationname->occupation_name:NULL}}" required="">
+                                <select class="__select_drop select" name="emp_sector" required="">
+                                    <option value="">Select an option</option>
+                                    @if(count($occupation_arr)>0)
+                                        @foreach($occupation_arr as $val)
+                                    <option value="{{$val['id']}}">{{$val['occupation_name']}}</option>
+                                @endforeach
+                                @endif
+                                </select>
+                                    <!-- <input type="text" placeholder="Select an option" class="__select_drop inputF" autocomplete="off" id="emp_sector_text" name="emp_sector_text" value="{{!empty($getpostdata['application_details']['emp_sector'])?$getoccupationname->occupation_name:NULL}}" required="">
                                     <ul class="hiddenul">
                                         @if(count($occupation_arr)>0)
                                         @foreach($occupation_arr as $val)
@@ -458,10 +499,10 @@
                                         @endforeach
                                         @endif
                                     </ul>
-                                    <input type="hidden" id="emp_sector" name="emp_sector" value="{{!empty($getpostdata['application_details']['emp_sector'])?$getoccupationname->id:NULL}}" class="inputH">
+                                    <input type="hidden" id="emp_sector" name="emp_sector" value="{{!empty($getpostdata['application_details']['emp_sector'])?$getoccupationname->id:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -488,7 +529,17 @@
                             <div class="input-block" id="resadd_city">
                                 <div class="labels block-counter"> District/City of Office <span class="strike">*</span></div>
                                     <div class="input-control outerInFoc">
-                                        <input type="text" placeholder="Select an option" class="__select_drop inputF" id="com_city_state_text" name="com_city_state_text" autocomplete="off" value="{{!empty($getpostdata['application_details']['office_city'])?$getpostdata['application_details']['office_city']:NULL}}" required="">
+                                    <select class="__select_drop select" name="emp_sector" required="">
+                                    <option value="">Select an option</option>
+                                        @if(count($data_name)>0)
+                                        @foreach($data_name as $row)
+                                        @foreach($row as $val)
+                                    <option value="{{$val}}">{{$val}}</option>
+                                        @endforeach
+                                        @endforeach    
+                                        @endif
+                                    </select>
+                                        <!--<input type="text" placeholder="Select an option" class="__select_drop inputF" id="com_city_state_text" name="com_city_state_text" autocomplete="off" value="{{!empty($getpostdata['application_details']['office_city'])?$getpostdata['application_details']['office_city']:NULL}}" required="">
                                         <ul class="hiddenul">
                                         @if(count($data_name)>0)
                                             @foreach($data_name as $row)
@@ -498,10 +549,10 @@
                                         @endforeach    
                                         @endif
                                     </ul>
-                                    <input type="hidden" id="com_city_state" name="com_city_state" value="{{!empty($getpostdata['application_details']['office_city'])?$getpostdata['application_details']['office_city']:NULL}}" class="inputH">
+                                    <input type="hidden" id="com_city_state" name="com_city_state" value="{{!empty($getpostdata['application_details']['office_city'])?$getpostdata['application_details']['office_city']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                     </div>
-                                    <div class="outerclick"></div>
+                                    <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -523,17 +574,23 @@
                                     </div>
                                 </div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" id="purpose_visit_text" name="purpose_visit_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['purpose_name'])?$getpostdata['purpose_name']:NULL}}" required="">
+                                <select class="__select_drop select" name="purpose_visit" required="">
+                                        <option class="hidden_li" value="13">Leisure Visit</option>
+                                        <option class="hidden_li" value="14">Business Visit</option>
+                                        <option class="hidden_li" value="15">Family Visit</option>
+                                        <option class="hidden_li" value="16">Transit</option>
+                                    </select>
+                                    <!-- <input type="text" placeholder="Select an option" id="purpose_visit_text" name="purpose_visit_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['purpose_name'])?$getpostdata['purpose_name']:NULL}}" required="">
                                     <ul class="hiddenul purpose_visit_ul">
                                         <li class="hidden_li" data-val="13">Leisure Visit</li>
                                         <li class="hidden_li" data-val="14">Business Visit</li>
                                         <li class="hidden_li" data-val="15">Family Visit</li>
                                         <li class="hidden_li" data-val="16">Transit</li>
                                     </ul>
-                                    <input type="hidden" id="purpose_visit" name="purpose_visit" value="{{!empty($getpostdata['purpose_id'])?$getpostdata['purpose_id']:NULL}}" class="inputH">
+                                    <input type="hidden" id="purpose_visit" name="purpose_visit" value="{{!empty($getpostdata['purpose_id'])?$getpostdata['purpose_id']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -543,17 +600,23 @@
                                     </div>
                                 </div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" id="purpose_day_text" name="purpose_day_text" class="__select_drop inputF" value="{{!empty($getpostdata['application_details']['proposed_duration_stay'])?$getpostdata['application_details']['proposed_duration_stay']:NULL}}" autocomplete="off">
+                                <select class="__select_drop select" name="purpose_day" required="">
+                                        <option value="">Same Day</option>
+                                        @for($i=1;$i<=14;$i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                        @endfor
+                                    </select>
+                                    <!-- <input type="text" placeholder="Select an option" id="purpose_day_text" name="purpose_day_text" class="__select_drop inputF" value="{{!empty($getpostdata['application_details']['proposed_duration_stay'])?$getpostdata['application_details']['proposed_duration_stay']:NULL}}" autocomplete="off">
                                     <ul class="hiddenul">
                                         <li class="hidden_li" data-val="Same Day">Same Day</li>
                                         @for($i=1;$i<=14;$i++)
                                         <li class="hidden_li" data-val="{{$i}}">{{$i}}</li>
                                         @endfor
                                     </ul>
-                                    <input type="hidden" id="purpose_day" name="purpose_day" value="{{!empty($getpostdata['application_details']['proposed_duration_stay'])?$getpostdata['application_details']['proposed_duration_stay']:NULL}}" class="inputH">
+                                    <input type="hidden" id="purpose_day" name="purpose_day" value="{{!empty($getpostdata['application_details']['proposed_duration_stay'])?$getpostdata['application_details']['proposed_duration_stay']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -575,7 +638,19 @@
                                     </div>
                                 </div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" id="hk_travel_fund_text" name="hk_travel_fund_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['application_details']['fund_travel_hksar'])?$getpostdata['application_details']['fund_travel_hksar']:NULL}}">
+
+                                  <select class="__select_drop select" name="hk_travel_fund" required="">
+                                        <option class="hidden_li" value="HK$0 - HK$4,999">HK$0 - HK$4,999</option>
+                                        <option class="hidden_li" value="HK$5,000 - HK$9,999">HK$5,000 - HK$9,999</option>
+                                        <option class="hidden_li" value="HK$10,000 - HK$14,999">HK$10,000 - HK$14,999</option>
+                                        <option class="hidden_li" value="HK$15,000 - HK$19,999">HK$15,000 - HK$19,999</option>
+                                        <option class="hidden_li" value="HK$20,000 - HK$29,999">HK$20,000 - HK$29,999</option>
+                                        <option class="hidden_li" value="HK$30,000 - HK$39,999">HK$30,000 - HK$39,999</option>
+                                        <option class="hidden_li" value="HK$40,000 or more">HK$40,000 or more</option>
+                                    </select>
+
+
+                                    <!-- <input type="text" placeholder="Select an option" id="hk_travel_fund_text" name="hk_travel_fund_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['application_details']['fund_travel_hksar'])?$getpostdata['application_details']['fund_travel_hksar']:NULL}}">
                                     <ul class="hiddenul">
                                         <li class="hidden_li" data-val="HK$0 - HK$4,999">HK$0 - HK$4,999</li>
                                         <li class="hidden_li" data-val="HK$5,000 - HK$9,999">HK$5,000 - HK$9,999</li>
@@ -585,10 +660,10 @@
                                         <li class="hidden_li" data-val="HK$30,000 - HK$39,999">HK$30,000 - HK$39,999</li>
                                         <li class="hidden_li" data-val="HK$40,000 or more">HK$40,000 or more</li>
                                     </ul>
-                                    <input type="hidden" id="hk_travel_fund" name="hk_travel_fund" value="{{!empty($getpostdata['application_details']['fund_travel_hksar'])?$getpostdata['application_details']['fund_travel_hksar']:NULL}}" class="inputH">
+                                    <input type="hidden" id="hk_travel_fund" name="hk_travel_fund" value="{{!empty($getpostdata['application_details']['fund_travel_hksar'])?$getpostdata['application_details']['fund_travel_hksar']:NULL}}" class="inputH"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
@@ -628,7 +703,17 @@
                                     </div>
                                 </div>
                                 <div class="input-control outerInFoc">
-                                    <input type="text" placeholder="Select an option" id="local_conn_relative_text" name="local_conn_relative_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['application_details']['local_conn_relation'])?$getpostdata['application_details']['local_conn_relation']:NULL}}">
+                                    <select class="__select_drop select" name="hk_travel_fund" required="">
+                                        <option class="hidden_li" value="Father/Mother">Father/Mother</option>
+                                        <option class="hidden_li" value="Husband/Wife">Husband/Wife</option>
+                                        <option class="hidden_li" value="Son/Daughter">Son/Daughter</option>
+                                        <option class="hidden_li" value="Siblings">Siblings</option>
+                                        <option class="hidden_li" value="Friend">Friend</option>
+                                        <option class="hidden_li" value="Business Associates">Business Associates</option>
+                                        <option class="hidden_li" value="Tour Agent">Tour Agent</option>
+                                        <option class="hidden_li" value="Other Relatives">Other Relatives</option>
+                                    </select>
+                                    <!-- <input type="text" placeholder="Select an option" id="local_conn_relative_text" name="local_conn_relative_text" class="__select_drop inputF" autocomplete="off" value="{{!empty($getpostdata['application_details']['local_conn_relation'])?$getpostdata['application_details']['local_conn_relation']:NULL}}">
                                     <ul class="hiddenul">
                                         <li class="hidden_li" data-val="Father/Mother">Father/Mother</li>
                                         <li class="hidden_li" data-val="Husband/Wife">Husband/Wife</li>
@@ -639,10 +724,10 @@
                                         <li class="hidden_li" data-val="Tour Agent">Tour Agent</li>
                                         <li class="hidden_li" data-val="Other Relatives">Other Relatives</li>
                                     </ul>
-                                    <input type="hidden" id="local_conn_relative" name="local_conn_relative" class="inputH" value="{{!empty($getpostdata['application_details']['local_conn_relation'])?$getpostdata['application_details']['local_conn_relation']:NULL}}">
+                                    <input type="hidden" id="local_conn_relative" name="local_conn_relative" class="inputH" value="{{!empty($getpostdata['application_details']['local_conn_relation'])?$getpostdata['application_details']['local_conn_relation']:NULL}}"> -->
                                     <div class="press_enter">PRESS TAB</div>
                                 </div>
-                                <div class="outerclick"></div>
+                                <!-- <div class="outerclick"></div> -->
                             </div>
                             <div class="input-block">
                                 <div class="labels">
